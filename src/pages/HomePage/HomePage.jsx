@@ -9,8 +9,6 @@ class HomePage extends Component {
   async componentDidMount() {
     const trends = await api.fetchTrends();
 
-    console.log(trends);
-
     this.setState({
       movies: trends,
     });

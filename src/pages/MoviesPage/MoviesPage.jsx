@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import SearchForm from '../../components/SearchForm';
 
 import api from '../../services/api';
@@ -36,8 +37,6 @@ class MoviesPage extends Component {
         movies: [...prevState.movies, ...results],
         currentPage: prevState.currentPage + 1,
       }));
-
-      console.log(results);
     } catch (error) {
       console.log('Smth wrong with App fetch', error);
       this.setState({ error });
@@ -54,9 +53,13 @@ class MoviesPage extends Component {
         <h2>Search results</h2>
 
         <ul>
-          {movies.map(movie => {
-            return <li key={movie.id}>{movie.title}</li>;
-          })}
+          {movies.map(movie => (
+            <li key={movie.id}>
+              <Link to={`${this.props.match.url}/${movie.id}`}>
+                {movie.title}
+              </Link>
+            </li>
+          ))}
         </ul>
       </>
     );

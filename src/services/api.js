@@ -14,7 +14,7 @@ const fetchTrends = async () => {
 // Фетч по поиску
 const fetchMoviesBySearch = async (searchQuery, currentPage) => {
   const { data } = await axios.get(
-    `search/movie?api_key=${API_KEY}&language=en-US&query=${searchQuery}&page=${currentPage}`,
+    `search/movie?api_key=${API_KEY}&query=${searchQuery}&page=${currentPage}&language=en-US`,
   );
 
   const results = data.results;
@@ -22,5 +22,14 @@ const fetchMoviesBySearch = async (searchQuery, currentPage) => {
   return results;
 };
 
+// Фетч фильма по id
+const fetchMovieById = async id => {
+  const { data } = await axios.get(
+    `/movie/${id}?api_key=${API_KEY}&language=en-US`,
+  );
+
+  return data;
+};
+
 // eslint-disable-next-line
-export default { fetchTrends, fetchMoviesBySearch };
+export default { fetchTrends, fetchMoviesBySearch, fetchMovieById };
