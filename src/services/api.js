@@ -31,5 +31,29 @@ const fetchMovieById = async id => {
   return data;
 };
 
+// Фетч актёров для фильма
+const fetchCast = async id => {
+  const { data } = await axios.get(
+    `/movie/${id}/credits?api_key=${API_KEY}&language=en-US`,
+  );
+
+  return data;
+};
+
+// Фетч отзывов на фильм
+const fetchReviews = async id => {
+  const { data } = await axios.get(
+    `/movie/${id}/reviews?api_key=${API_KEY}&language=en-US&page=1`,
+  );
+
+  return data;
+};
+
 // eslint-disable-next-line
-export default { fetchTrends, fetchMoviesBySearch, fetchMovieById };
+export default {
+  fetchTrends,
+  fetchMoviesBySearch,
+  fetchMovieById,
+  fetchCast,
+  fetchReviews,
+};

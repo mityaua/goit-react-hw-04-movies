@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import Cast from '../../components/Cast';
+import Reviews from '../../components/Reviews';
+import { NavLink, Route, Switch } from 'react-router-dom';
 
 import api from '../../services/api';
 
@@ -32,11 +35,13 @@ class MovieDetailsPage extends Component {
       genres,
     } = this.state;
 
+    const { match } = this.props;
+
     return (
       <>
-        <h2>
+        <h1>
           {title} | ({release_date})
-        </h2>
+        </h1>
 
         <ul>
           {genres.map(genre => {
@@ -60,6 +65,32 @@ class MovieDetailsPage extends Component {
         />
 
         <p>{overview}</p>
+
+        <ul>
+          <li>
+            <NavLink to={`${match.url}/cast/`}>Cast</NavLink>
+          </li>
+          <li>
+            <NavLink to={`${match.url}/reviews/`}>Reviews</NavLink>
+          </li>
+        </ul>
+
+        <Switch>
+          <Route
+            exact
+            path={`${match.path}/cast/`}
+            render={props => {
+              return <Cast {...props} id={match.params.movieId} />;
+            }}
+          />
+          <Route
+            exact
+            path={`${match.path}/reviews/`}
+            render={props => {
+              return <Reviews {...props} id={match.params.movieId} />;
+            }}
+          />
+        </Switch>
       </>
     );
   }
