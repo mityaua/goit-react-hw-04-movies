@@ -1,0 +1,8 @@
+.Navlink {
+  color: currentColor;
+
+  &--active {
+    color: tomato;
+    font-weight: 500;
+  }
+}
