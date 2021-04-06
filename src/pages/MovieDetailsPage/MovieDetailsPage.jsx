@@ -11,7 +11,7 @@ class MovieDetailsPage extends Component {
     release_date: '',
     overview: '',
     genres: [],
-    popularity: null,
+    vote_average: null,
     poster_path: '',
   };
 
@@ -29,7 +29,7 @@ class MovieDetailsPage extends Component {
     const {
       title,
       release_date,
-      popularity,
+      vote_average,
       poster_path,
       overview,
       genres,
@@ -40,20 +40,12 @@ class MovieDetailsPage extends Component {
     return (
       <>
         <h1>
-          {title} | ({release_date})
+          {title} ({release_date})
         </h1>
 
-        <ul>
-          {genres.map(genre => {
-            return (
-              <li key={genre.id}>
-                <span>{genre.name}</span>
-              </li>
-            );
-          })}
-        </ul>
+        <span>User score: {vote_average * 10}%</span>
 
-        <span>{popularity}</span>
+        <p>Overview: {overview}</p>
 
         <img
           src={
@@ -64,8 +56,18 @@ class MovieDetailsPage extends Component {
           alt={title}
         />
 
-        <p>{overview}</p>
+        <span>Genres:</span>
+        <ul>
+          {genres.map(genre => {
+            return (
+              <li key={genre.id}>
+                <span>{genre.name}</span>
+              </li>
+            );
+          })}
+        </ul>
 
+        <span>Additional information:</span>
         <ul>
           <li>
             <NavLink to={`${match.url}/cast/`}>Cast</NavLink>
@@ -80,14 +82,16 @@ class MovieDetailsPage extends Component {
             exact
             path={`${match.path}/cast/`}
             render={props => {
-              return <Cast {...props} id={match.params.movieId} />;
+              const { movieId } = match.params;
+              return <Cast {...props} id={movieId} />;
             }}
           />
           <Route
             exact
             path={`${match.path}/reviews/`}
             render={props => {
-              return <Reviews {...props} id={match.params.movieId} />;
+              const { movieId } = match.params;
+              return <Reviews {...props} id={movieId} />;
             }}
           />
         </Switch>

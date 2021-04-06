@@ -8,9 +8,9 @@ class Cast extends Component {
   };
 
   async componentDidMount() {
-    const id = this.props.match.params.movieId;
+    const movieId = this.props.id;
 
-    const { cast } = await api.fetchCast(id);
+    const { cast } = await api.fetchCast(movieId);
 
     this.setState({
       actors: cast,
@@ -20,7 +20,29 @@ class Cast extends Component {
   }
 
   render() {
-    return <h2>Cast</h2>;
+    return (
+      <ul>
+        {this.state.actors.map(actor => {
+          return (
+            <li key={actor.id}>
+              <img
+                src={
+                  actor.profile_path
+                    ? `https://image.tmdb.org/t/p/w300${actor.profile_path}`
+                    : null
+                }
+                alt={actor.name}
+              />
+              <p>{actor.name}</p>
+              <p>
+                <span>Character: </span>
+                {actor.character}
+              </p>
+            </li>
+          );
+        })}
+      </ul>
+    );
   }
 }
 

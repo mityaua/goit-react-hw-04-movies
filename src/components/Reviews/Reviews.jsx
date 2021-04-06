@@ -20,7 +20,22 @@ class Reviews extends Component {
   }
 
   render() {
-    return <h2>Reviews</h2>;
+    return (
+      <ul>
+        {this.state.reviews.length > 0
+          ? 'Yes'
+          : 'We dont have any reviews for this movie'}
+
+        {this.state.reviews.map(review => {
+          return (
+            <li key={review.id}>
+              <span>{review.author}</span>
+              <p>{review.content}</p>
+            </li>
+          );
+        })}
+      </ul>
+    );
   }
 }
 

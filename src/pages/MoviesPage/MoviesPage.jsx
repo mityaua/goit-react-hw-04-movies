@@ -12,12 +12,14 @@ class MoviesPage extends Component {
     error: null,
   };
 
+  // Запрос за фильмами при поиске
   componentDidUpdate(prevProps, prevState) {
     if (prevState.searchQuery !== this.state.searchQuery) {
       this.getMovies();
     }
   }
 
+  // Принимает запрос с инпута и пишет его в стейт
   onChangeQuery = query => {
     this.setState({
       movies: [],
@@ -27,6 +29,7 @@ class MoviesPage extends Component {
     });
   };
 
+  // Фетч фильма по слову из инпута
   getMovies = async () => {
     const { searchQuery, currentPage } = this.state;
 
@@ -61,6 +64,12 @@ class MoviesPage extends Component {
             </li>
           ))}
         </ul>
+
+        {movies.length > 0 && (
+          <button type="button" onClick={this.getMovies}>
+            Load more
+          </button>
+        )}
       </>
     );
   }

@@ -8,6 +8,7 @@ import styles from './App.module.scss';
 
 const App = () => (
   <>
+    {/* Главная навигация приложения */}
     <ul>
       <li>
         <NavLink
@@ -30,6 +31,7 @@ const App = () => (
       </li>
     </ul>
 
+    {/* Главный роутинг приложения */}
     <Switch>
       <Route exact path="/" component={HomePage} />
       <Route exact path="/movies" component={MoviesPage} />
