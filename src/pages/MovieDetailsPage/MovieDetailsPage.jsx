@@ -10,18 +10,25 @@ class MovieDetailsPage extends Component {
     title: '',
     release_date: '',
     overview: '',
-    genres: [],
     vote_average: null,
     poster_path: '',
+    genres: [],
+    actors: [],
+    reviews: [],
   };
 
   async componentDidMount() {
     const { movieId } = this.props.match.params;
 
-    const result = await api.fetchMovieById(movieId);
+    // Нужна оптимизация промисов в массив
+    const movie = await api.fetchMovieById(movieId);
+    const { cast } = await api.fetchCast(movieId);
+    const { results } = await api.fetchReviews(movieId);
 
     this.setState({
-      ...result,
+      ...movie,
+      actors: cast,
+      reviews: results,
     });
   }
 
@@ -67,6 +74,7 @@ class MovieDetailsPage extends Component {
           })}
         </ul>
 
+        {/* Меню актёров и обзоров */}
         <span>Additional information:</span>
         <ul>
           <li>
@@ -77,21 +85,20 @@ class MovieDetailsPage extends Component {
           </li>
         </ul>
 
+        {/* Роутинг на основе шаблона match.path */}
         <Switch>
           <Route
             exact
             path={`${match.path}/cast/`}
             render={props => {
-              const { movieId } = match.params;
-              return <Cast {...props} id={movieId} />;
+              return <Cast {...props} cast={this.state.actors} />;
             }}
           />
           <Route
             exact
             path={`${match.path}/reviews/`}
             render={props => {
-              const { movieId } = match.params;
-              return <Reviews {...props} id={movieId} />;
+              return <Reviews {...props} reviews={this.state.reviews} />;
             }}
           />
         </Switch>
