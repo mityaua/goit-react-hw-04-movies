@@ -5,22 +5,25 @@ import { NavLink, Route, Switch } from 'react-router-dom';
 
 import api from '../../services/api';
 
+// import placeholder from '../../assets/images/placeholder.png';
+
 class MovieDetailsPage extends Component {
   state = {
     title: '',
     release_date: '',
     overview: '',
-    vote_average: null,
+    vote_average: 0,
     poster_path: '',
     genres: [],
     actors: [],
     reviews: [],
+    error: null,
   };
 
   async componentDidMount() {
     const { movieId } = this.props.match.params;
 
-    // Нужна оптимизация промисов в массив
+    // Нужна оптимизация промисов через all или race?
     const movie = await api.fetchMovieById(movieId);
     const { cast } = await api.fetchCast(movieId);
     const { results } = await api.fetchReviews(movieId);
@@ -29,6 +32,7 @@ class MovieDetailsPage extends Component {
       ...movie,
       actors: cast,
       reviews: results,
+      error: null,
     });
   }
 
@@ -40,28 +44,30 @@ class MovieDetailsPage extends Component {
       poster_path,
       overview,
       genres,
+      actors,
+      reviews,
     } = this.state;
 
     const { match } = this.props;
 
     return (
-      <>
-        <h1>
-          {title} ({release_date})
-        </h1>
+      <article>
+        {title && (
+          <h1>
+            {title} ({release_date.substring(0, 4)})
+          </h1>
+        )}
 
         <span>User score: {vote_average * 10}%</span>
 
         <p>Overview: {overview}</p>
 
-        <img
-          src={
-            poster_path
-              ? `https://image.tmdb.org/t/p/w500/${poster_path}`
-              : null
-          }
-          alt={title}
-        />
+        {poster_path && (
+          <img
+            src={`https://image.tmdb.org/t/p/w500/${poster_path}`}
+            alt={title}
+          />
+        )}
 
         <span>Genres:</span>
         <ul>
@@ -91,18 +97,26 @@ class MovieDetailsPage extends Component {
             exact
             path={`${match.path}/cast/`}
             render={props => {
-              return <Cast {...props} cast={this.state.actors} />;
+              return actors.length > 0 ? (
+                <Cast {...props} cast={actors} />
+              ) : (
+                <p>There is no information about the actors.</p>
+              );
             }}
           />
           <Route
             exact
             path={`${match.path}/reviews/`}
             render={props => {
-              return <Reviews {...props} reviews={this.state.reviews} />;
+              return reviews.length > 0 ? (
+                <Reviews {...props} reviews={reviews} />
+              ) : (
+                <p>We dont have any reviews for this movie.</p>
+              );
             }}
           />
         </Switch>
-      </>
+      </article>
     );
   }
 }

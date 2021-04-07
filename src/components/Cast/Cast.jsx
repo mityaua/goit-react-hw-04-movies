@@ -1,3 +1,5 @@
+import placeholder from '../../assets/images/placeholder.png';
+
 const Cast = ({ cast }) => {
   return (
     <ul>
@@ -8,7 +10,7 @@ const Cast = ({ cast }) => {
               src={
                 actor.profile_path
                   ? `https://image.tmdb.org/t/p/w300${actor.profile_path}`
-                  : null
+                  : placeholder
               }
               alt={actor.name}
             />

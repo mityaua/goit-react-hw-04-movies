@@ -5,21 +5,28 @@ import api from '../../services/api';
 class HomePage extends Component {
   state = {
     movies: [],
+    error: null,
   };
 
   // Запрос за трендами при маунте
   async componentDidMount() {
-    const trends = await api.fetchTrends();
+    try {
+      const trends = await api.fetchTrends();
 
-    this.setState({
-      movies: trends,
-    });
+      this.setState({
+        movies: trends,
+        error: null,
+      });
+    } catch (error) {
+      console.error('Smth wrong with homepage trends fetch', error);
+      this.setState({ error });
+    }
   }
 
   render() {
     const { movies } = this.state;
 
-    // Пересмотреть формирование урла для Link!!!
+    // Пересмотреть формирование урла для Link
     return (
       <>
         <h2>Trending today</h2>

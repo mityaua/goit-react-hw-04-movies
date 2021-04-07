@@ -41,13 +41,14 @@ class MoviesPage extends Component {
         currentPage: prevState.currentPage + 1,
       }));
     } catch (error) {
-      console.log('Smth wrong with App fetch', error);
+      console.error('Smth wrong with search fetch', error);
       this.setState({ error });
     }
   };
 
   render() {
     const { movies } = this.state;
+    const { match } = this.props;
 
     return (
       <>
@@ -58,9 +59,7 @@ class MoviesPage extends Component {
         <ul>
           {movies.map(movie => (
             <li key={movie.id}>
-              <Link to={`${this.props.match.url}/${movie.id}`}>
-                {movie.title}
-              </Link>
+              <Link to={`${match.url}/${movie.id}`}>{movie.title}</Link>
             </li>
           ))}
         </ul>
