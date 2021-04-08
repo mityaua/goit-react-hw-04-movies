@@ -2,7 +2,7 @@ import { useState } from 'react';
 import PropTypes from 'prop-types';
 import styles from './SearchForm.module.scss';
 
-const SearchFrom = ({ onSearch }) => {
+const SearchForm = ({ onSearch }) => {
   const [query, setQuery] = useState('');
 
   // Наблюдает за инпутом и пишет значние в стейт
@@ -47,8 +47,8 @@ const SearchFrom = ({ onSearch }) => {
   );
 };
 
-SearchFrom.propTypes = {
+SearchForm.propTypes = {
   onSearch: PropTypes.func.isRequired,
 };
 
-export default SearchFrom;
+export default SearchForm;

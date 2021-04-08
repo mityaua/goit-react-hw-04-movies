@@ -15,25 +15,23 @@ class MovieDetailsPage extends Component {
     vote_average: 0,
     poster_path: '',
     genres: [],
-    actors: [],
-    reviews: [],
     error: null,
   };
 
   async componentDidMount() {
     const { movieId } = this.props.match.params;
 
-    // Нужна оптимизация промисов через all или race?
-    const movie = await api.fetchMovieById(movieId);
-    const { cast } = await api.fetchCast(movieId);
-    const { results } = await api.fetchReviews(movieId);
+    try {
+      const movie = await api.fetchMovieById(movieId);
 
-    this.setState({
-      ...movie,
-      actors: cast,
-      reviews: results,
-      error: null,
-    });
+      this.setState({
+        ...movie,
+        error: null,
+      });
+    } catch (error) {
+      console.error('Smth wrong with trends movie on movie page', error);
+      this.setState({ error });
+    }
   }
 
   render() {
@@ -44,8 +42,6 @@ class MovieDetailsPage extends Component {
       poster_path,
       overview,
       genres,
-      actors,
-      reviews,
     } = this.state;
 
     const { match } = this.props;
@@ -93,28 +89,8 @@ class MovieDetailsPage extends Component {
 
         {/* Роутинг на основе шаблона match.path */}
         <Switch>
-          <Route
-            exact
-            path={`${match.path}/cast/`}
-            render={props => {
-              return actors.length > 0 ? (
-                <Cast {...props} cast={actors} />
-              ) : (
-                <p>There is no information about the actors.</p>
-              );
-            }}
-          />
-          <Route
-            exact
-            path={`${match.path}/reviews/`}
-            render={props => {
-              return reviews.length > 0 ? (
-                <Reviews {...props} reviews={reviews} />
-              ) : (
-                <p>We dont have any reviews for this movie.</p>
-              );
-            }}
-          />
+          <Route exact path={`${match.path}/cast/`} component={Cast} />
+          <Route exact path={`${match.path}/reviews/`} component={Reviews} />
         </Switch>
       </article>
     );
