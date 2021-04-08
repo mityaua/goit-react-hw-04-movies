@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import MovieList from '../../components/MovieList';
+import Message from '../../components/Message';
 import Loader from '../../components/Loader';
 import api from '../../services/api';
 
@@ -38,8 +39,16 @@ class HomePage extends Component {
 
     return (
       <main>
-        <h2>Trending today</h2>
-        <MovieList movies={trends} />
+        {/* Нужна проверка на буль */}
+        {trends ? (
+          <MovieList movies={trends} />
+        ) : (
+          <Message>
+            <h2>
+              The service is temporarily unavailable. Please try again later.
+            </h2>
+          </Message>
+        )}
 
         {isLoading && <Loader />}
       </main>

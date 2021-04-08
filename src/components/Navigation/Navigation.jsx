@@ -4,9 +4,9 @@ import routes from '../../routes';
 import styles from './Navigation.module.scss';
 
 const Navigation = () => (
-  <nav>
-    <ul>
-      <li>
+  <nav className={styles.Container}>
+    <ul className={styles.NavList}>
+      <li className={styles.NavItem}>
         <NavLink
           exact
           to={routes.home}

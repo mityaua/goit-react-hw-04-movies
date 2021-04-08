@@ -1,4 +1,5 @@
 import { Route, Switch } from 'react-router-dom';
+import Container from './components/Container';
 import HomePage from './pages/HomePage';
 import MoviesPage from './pages/MoviesPage';
 import MovieDetailsPage from './pages/MovieDetailsPage';
@@ -12,13 +13,15 @@ const App = () => (
   <>
     <AppBar />
 
-    {/* Роутинг приложения */}
-    <Switch>
-      <Route exact path={routes.home} component={HomePage} />
-      <Route exact path={routes.movies} component={MoviesPage} />
-      <Route path={routes.movieDetails} component={MovieDetailsPage} />
-      <Route component={PageNotFound} />
-    </Switch>
+    <Container>
+      {/* Роутинг приложения */}
+      <Switch>
+        <Route exact path={routes.home} component={HomePage} />
+        <Route exact path={routes.movies} component={MoviesPage} />
+        <Route path={routes.movieDetails} component={MovieDetailsPage} />
+        <Route component={PageNotFound} />
+      </Switch>
+    </Container>
   </>
 );
 

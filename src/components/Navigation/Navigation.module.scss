@@ -1,4 +1,22 @@
+.Container {
+  margin: 0px auto;
+  padding: 0px 15px;
+  max-width: 1170px;
+}
+
+.NavList {
+  display: flex;
+}
+
+.NavItem:not(:last-child) {
+  margin-right: 20px;
+}
+
 .Navlink {
+  display: block;
+  padding-top: 20px;
+  padding-bottom: 20px;
+
   color: currentColor;
 
   text-decoration: none;
@@ -9,7 +27,7 @@
   }
 
   &--active {
-    color: tomato;
+    color: #02be6e;
     font-weight: 500;
 
     text-decoration: none;

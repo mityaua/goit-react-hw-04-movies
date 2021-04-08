@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import SearchForm from '../../components/SearchForm';
 import MovieList from '../../components/MovieList';
 import Loader from '../../components/Loader';
-import Button from '../../components/Button';
+import LoadMoreButton from '../../components/LoadMoreButton';
 
 import api from '../../services/api';
 
@@ -64,10 +64,9 @@ class MoviesPage extends Component {
       <main>
         <SearchForm onSearch={this.onChangeQuery} />
 
-        <h2>Search results</h2>
         <MovieList movies={movies} />
 
-        {movies.length > 0 && <Button onClick={this.getMovies} />}
+        {movies.length > 0 && <LoadMoreButton onClick={this.getMovies} />}
 
         {isLoading && <Loader />}
       </main>
