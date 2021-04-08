@@ -1,0 +1,17 @@
+.Navlink {
+  color: currentColor;
+
+  text-decoration: none;
+
+  &:hover,
+  &:focus {
+    text-decoration: underline;
+  }
+
+  &--active {
+    color: tomato;
+    font-weight: 500;
+
+    text-decoration: none;
+  }
+}

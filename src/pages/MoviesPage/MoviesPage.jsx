@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import SearchForm from '../../components/SearchForm';
+import MovieList from '../../components/MovieList';
 import Loader from '../../components/Loader';
 import Button from '../../components/Button';
 
@@ -59,26 +59,18 @@ class MoviesPage extends Component {
 
   render() {
     const { movies, isLoading } = this.state;
-    const { match } = this.props;
 
     return (
-      <>
+      <main>
         <SearchForm onSearch={this.onChangeQuery} />
 
         <h2>Search results</h2>
-
-        <ul>
-          {movies.map(movie => (
-            <li key={movie.id}>
-              <Link to={`${match.url}/${movie.id}`}>{movie.title}</Link>
-            </li>
-          ))}
-        </ul>
+        <MovieList movies={movies} />
 
         {movies.length > 0 && <Button onClick={this.getMovies} />}
 
         {isLoading && <Loader />}
-      </>
+      </main>
     );
   }
 }

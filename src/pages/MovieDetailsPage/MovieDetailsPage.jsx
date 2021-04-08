@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Movie from '../../components/Movie';
 import Cast from '../../components/Cast';
 import Reviews from '../../components/Reviews';
 import Loader from '../../components/Loader';
@@ -6,20 +7,14 @@ import { NavLink, Route, Switch } from 'react-router-dom';
 
 import api from '../../services/api';
 
-// import placeholder from '../../assets/images/placeholder.png';
-
 class MovieDetailsPage extends Component {
   state = {
-    title: '',
-    release_date: '',
-    overview: '',
-    vote_average: 0,
-    poster_path: '',
-    genres: [],
+    movie: null,
     isLoading: false,
     error: null,
   };
 
+  // Запрос за фильмом при маунте
   async componentDidMount() {
     const { movieId } = this.props.match.params;
 
@@ -28,10 +23,10 @@ class MovieDetailsPage extends Component {
     });
 
     try {
-      const movie = await api.fetchMovieById(movieId);
+      const result = await api.fetchMovieById(movieId);
 
       this.setState({
-        ...movie,
+        movie: result,
         error: null,
       });
     } catch (error) {
@@ -45,50 +40,16 @@ class MovieDetailsPage extends Component {
   }
 
   render() {
-    const {
-      title,
-      release_date,
-      vote_average,
-      poster_path,
-      overview,
-      genres,
-      isLoading,
-    } = this.state;
-
+    const { movie, isLoading } = this.state;
     const { match } = this.props;
 
     return (
-      <article>
-        {title && (
-          <h1>
-            {title} ({release_date.substring(0, 4)})
-          </h1>
-        )}
-
-        <span>User score: {vote_average * 10}%</span>
-
-        <p>Overview: {overview}</p>
-
-        {poster_path && (
-          <img
-            src={`https://image.tmdb.org/t/p/w500/${poster_path}`}
-            alt={title}
-          />
-        )}
-
-        <span>Genres:</span>
-        <ul>
-          {genres.map(genre => {
-            return (
-              <li key={genre.id}>
-                <span>{genre.name}</span>
-              </li>
-            );
-          })}
-        </ul>
+      <>
+        {movie && <Movie movie={movie} />}
 
         {/* Меню актёров и обзоров */}
-        <span>Additional information:</span>
+        <p>Additional information:</p>
+
         <ul>
           <li>
             <NavLink to={`${match.url}/cast/`}>Cast</NavLink>
@@ -105,7 +66,7 @@ class MovieDetailsPage extends Component {
           <Route exact path={`${match.path}/cast/`} component={Cast} />
           <Route exact path={`${match.path}/reviews/`} component={Reviews} />
         </Switch>
-      </article>
+      </>
     );
   }
 }

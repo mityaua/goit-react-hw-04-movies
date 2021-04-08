@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import MovieList from '../../components/MovieList';
 import Loader from '../../components/Loader';
 import api from '../../services/api';
 
 class HomePage extends Component {
   state = {
-    movies: [],
+    trends: [],
     isLoading: false,
     error: null,
   };
@@ -17,10 +17,10 @@ class HomePage extends Component {
     });
 
     try {
-      const trends = await api.fetchTrends();
+      const movies = await api.fetchTrends();
 
       this.setState({
-        movies: trends,
+        trends: movies,
         error: null,
       });
     } catch (error) {
@@ -34,25 +34,15 @@ class HomePage extends Component {
   }
 
   render() {
-    const { movies, isLoading } = this.state;
+    const { trends, isLoading } = this.state;
 
-    // Пересмотреть формирование урла для Link
     return (
-      <>
+      <main>
         <h2>Trending today</h2>
-
-        <ul>
-          {movies.map(movie => {
-            return (
-              <li key={movie.id}>
-                <Link to={`/movies/${movie.id}`}>{movie.title}</Link>
-              </li>
-            );
-          })}
-        </ul>
+        <MovieList movies={trends} />
 
         {isLoading && <Loader />}
-      </>
+      </main>
     );
   }
 }
