@@ -1,15 +1,21 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import Loader from '../../components/Loader';
 import api from '../../services/api';
 
 class HomePage extends Component {
   state = {
     movies: [],
+    isLoading: false,
     error: null,
   };
 
   // Запрос за трендами при маунте
   async componentDidMount() {
+    this.setState({
+      isLoading: true,
+    });
+
     try {
       const trends = await api.fetchTrends();
 
@@ -20,16 +26,21 @@ class HomePage extends Component {
     } catch (error) {
       console.error('Smth wrong with homepage trends fetch', error);
       this.setState({ error });
+    } finally {
+      this.setState({
+        isLoading: false,
+      });
     }
   }
 
   render() {
-    const { movies } = this.state;
+    const { movies, isLoading } = this.state;
 
     // Пересмотреть формирование урла для Link
     return (
       <>
         <h2>Trending today</h2>
+
         <ul>
           {movies.map(movie => {
             return (
@@ -39,6 +50,8 @@ class HomePage extends Component {
             );
           })}
         </ul>
+
+        {isLoading && <Loader />}
       </>
     );
   }

@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import SearchForm from '../../components/SearchForm';
+import Loader from '../../components/Loader';
+import Button from '../../components/Button';
 
 import api from '../../services/api';
 
@@ -9,6 +11,7 @@ class MoviesPage extends Component {
     movies: [],
     searchQuery: '',
     currentPage: 1,
+    isLoading: false,
     error: null,
   };
 
@@ -33,6 +36,10 @@ class MoviesPage extends Component {
   getMovies = async () => {
     const { searchQuery, currentPage } = this.state;
 
+    this.setState({
+      isLoading: true,
+    });
+
     try {
       const results = await api.fetchMoviesBySearch(searchQuery, currentPage);
 
@@ -43,11 +50,15 @@ class MoviesPage extends Component {
     } catch (error) {
       console.error('Smth wrong with search fetch', error);
       this.setState({ error });
+    } finally {
+      this.setState({
+        isLoading: false,
+      });
     }
   };
 
   render() {
-    const { movies } = this.state;
+    const { movies, isLoading } = this.state;
     const { match } = this.props;
 
     return (
@@ -64,11 +75,9 @@ class MoviesPage extends Component {
           ))}
         </ul>
 
-        {movies.length > 0 && (
-          <button type="button" onClick={this.getMovies}>
-            Load more
-          </button>
-        )}
+        {movies.length > 0 && <Button onClick={this.getMovies} />}
+
+        {isLoading && <Loader />}
       </>
     );
   }

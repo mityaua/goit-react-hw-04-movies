@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Cast from '../../components/Cast';
 import Reviews from '../../components/Reviews';
+import Loader from '../../components/Loader';
 import { NavLink, Route, Switch } from 'react-router-dom';
 
 import api from '../../services/api';
@@ -15,11 +16,16 @@ class MovieDetailsPage extends Component {
     vote_average: 0,
     poster_path: '',
     genres: [],
+    isLoading: false,
     error: null,
   };
 
   async componentDidMount() {
     const { movieId } = this.props.match.params;
+
+    this.setState({
+      isLoading: true,
+    });
 
     try {
       const movie = await api.fetchMovieById(movieId);
@@ -31,6 +37,10 @@ class MovieDetailsPage extends Component {
     } catch (error) {
       console.error('Smth wrong with trends movie on movie page', error);
       this.setState({ error });
+    } finally {
+      this.setState({
+        isLoading: false,
+      });
     }
   }
 
@@ -42,6 +52,7 @@ class MovieDetailsPage extends Component {
       poster_path,
       overview,
       genres,
+      isLoading,
     } = this.state;
 
     const { match } = this.props;
@@ -86,6 +97,8 @@ class MovieDetailsPage extends Component {
             <NavLink to={`${match.url}/reviews/`}>Reviews</NavLink>
           </li>
         </ul>
+
+        {isLoading && <Loader />}
 
         {/* Роутинг на основе шаблона match.path */}
         <Switch>
