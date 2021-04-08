@@ -1,8 +1,9 @@
 import { Component } from 'react';
+import Actor from '../Actor';
 import Loader from '../Loader';
 import api from '../../services/api';
 
-// import placeholder from '../../assets/images/placeholder.png';
+import styles from './Cast.module.scss';
 
 class Cast extends Component {
   state = {
@@ -20,7 +21,6 @@ class Cast extends Component {
 
     try {
       const { cast } = await api.fetchCast(movieId);
-      console.log(cast);
 
       this.setState({
         actors: [...cast],
@@ -44,21 +44,15 @@ class Cast extends Component {
         {isLoading && <Loader />}
 
         {actors.length > 0 ? (
-          <ul>
-            {actors.map(actor => {
+          <ul className={styles.List}>
+            {actors.map(({ id, profile_path, name, character }) => {
               return (
-                <li key={actor.id}>
-                  {actor.profile_path ? (
-                    <img
-                      src={`https://image.tmdb.org/t/p/w300${actor.profile_path}`}
-                      alt={actor.name}
-                    />
-                  ) : null}
-                  <p>{actor.name}</p>
-                  <p>
-                    <span>Character: </span>
-                    {actor.character}
-                  </p>
+                <li key={id} className={styles.Item}>
+                  <Actor
+                    photo={profile_path}
+                    name={name}
+                    character={character}
+                  />
                 </li>
               );
             })}

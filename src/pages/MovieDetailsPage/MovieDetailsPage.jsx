@@ -7,6 +7,8 @@ import { NavLink, Route, Switch } from 'react-router-dom';
 
 import api from '../../services/api';
 
+import styles from './MovieDetailsPage.module.scss';
+
 class MovieDetailsPage extends Component {
   state = {
     movie: null,
@@ -48,14 +50,26 @@ class MovieDetailsPage extends Component {
         {movie && <Movie movie={movie} />}
 
         {/* Меню актёров и обзоров */}
-        <p>Additional information:</p>
+        <b>Additional information:</b>
 
-        <ul>
-          <li>
-            <NavLink to={`${match.url}/cast/`}>Cast</NavLink>
+        <ul className={styles.List}>
+          <li className={styles.Item}>
+            <NavLink
+              to={`${match.url}/cast/`}
+              className={styles.Link}
+              activeClassName={styles['Link--active']}
+            >
+              Cast
+            </NavLink>
           </li>
           <li>
-            <NavLink to={`${match.url}/reviews/`}>Reviews</NavLink>
+            <NavLink
+              to={`${match.url}/reviews/`}
+              className={styles.Link}
+              activeClassName={styles['Link--active']}
+            >
+              Reviews
+            </NavLink>
           </li>
         </ul>
 

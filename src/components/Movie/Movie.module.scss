@@ -1,0 +1,33 @@
+.Article {
+  padding: 20px 0;
+}
+
+.Title {
+  margin-bottom: 20px;
+}
+
+.Score {
+  margin-bottom: 20px;
+}
+
+.Overview {
+  margin-bottom: 20px;
+}
+
+.Poster {
+  margin-bottom: 20px;
+}
+
+.GenresTitle {
+  font-weight: 700;
+}
+
+.GenresList {
+  margin-top: 10px;
+}
+
+.GenresItem {
+  &:not(:last-child) {
+    margin-bottom: 10px;
+  }
+}

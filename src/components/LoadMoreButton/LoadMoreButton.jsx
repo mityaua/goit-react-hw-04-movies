@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import styles from './LoadMoreButton.module.scss';
 
 const LoadMoreButton = ({ onClick }) => (
-  <div className={styles['Button-wrapper']}>
+  <div className={styles.Wrapper}>
     <button type="button" className={styles.LoadMoreButton} onClick={onClick}>
       Load more
     </button>

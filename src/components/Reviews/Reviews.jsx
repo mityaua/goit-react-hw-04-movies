@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
+import Review from '../Review';
 import Loader from '../Loader';
 
 import api from '../../services/api';
+
+import styles from './Reviews.module.scss';
 
 class Reviews extends Component {
   state = {
@@ -44,11 +47,10 @@ class Reviews extends Component {
 
         {reviews.length > 0 ? (
           <ul>
-            {reviews.map(review => {
+            {reviews.map(({ id, author, content }) => {
               return (
-                <li key={review.id}>
-                  <span>{review.author}</span>
-                  <p>{review.content}</p>
+                <li key={id} className={styles.Item}>
+                  <Review author={author} content={content} />
                 </li>
               );
             })}

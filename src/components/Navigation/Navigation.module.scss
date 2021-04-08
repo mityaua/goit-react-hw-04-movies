@@ -8,8 +8,10 @@
   display: flex;
 }
 
-.NavItem:not(:last-child) {
-  margin-right: 20px;
+.NavItem {
+  &:not(:last-child) {
+    margin-right: 20px;
+  }
 }
 
 .Navlink {
