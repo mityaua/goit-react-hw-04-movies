@@ -1,5 +1,12 @@
+.Content {
+}
+
 .Article {
-  padding: 20px 0;
+  padding-bottom: 20px;
+
+  @media screen and (min-width: 768px) {
+    display: flex;
+  }
 }
 
 .Title {
@@ -14,12 +21,25 @@
   margin-bottom: 20px;
 }
 
-.Poster {
+.Thumb {
   margin-bottom: 20px;
+
+  @media screen and (min-width: 768px) {
+    margin-right: 20px;
+  }
 }
 
-.GenresTitle {
-  font-weight: 700;
+.Poster {
+  // max-width: 300px;
+  height: auto;
+
+  @media screen and (min-width: 768px) {
+    max-width: 300px;
+  }
+}
+
+.Label {
+  margin-right: 5px;
 }
 
 .GenresList {
@@ -27,6 +47,8 @@
 }
 
 .GenresItem {
+  list-style: inside;
+
   &:not(:last-child) {
     margin-bottom: 10px;
   }

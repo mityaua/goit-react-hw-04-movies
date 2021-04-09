@@ -5,6 +5,7 @@ import Reviews from '../../components/Reviews';
 import Loader from '../../components/Loader';
 import { NavLink, Route, Switch } from 'react-router-dom';
 
+import routes from '../../routes';
 import api from '../../services/api';
 
 import styles from './MovieDetailsPage.module.scss';
@@ -41,12 +42,27 @@ class MovieDetailsPage extends Component {
     }
   }
 
+  // Метод для кнопки "Назад" с проверкой на стейт истории и редиректом на главную
+  handleGoBack = () => {
+    const { location, history } = this.props;
+
+    history.push(location?.state?.from || routes.home);
+  };
+
   render() {
     const { movie, isLoading } = this.state;
     const { match } = this.props;
 
     return (
       <>
+        <button
+          type="button"
+          className={styles.Back}
+          onClick={this.handleGoBack}
+        >
+          Go back
+        </button>
+
         {movie && <Movie movie={movie} />}
 
         {/* Меню актёров и обзоров */}
