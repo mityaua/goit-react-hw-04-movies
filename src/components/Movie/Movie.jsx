@@ -26,7 +26,7 @@ const Movie = ({ movie }) => {
         )}
       </div>
 
-      <div className={styles.Content}>
+      <div>
         {title && (
           <h1 className={styles.Title}>
             {title}{' '}
