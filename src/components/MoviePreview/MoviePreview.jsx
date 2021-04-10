@@ -9,7 +9,7 @@ const MoviePreview = ({ title, poster }) => {
     <div>
       <div className={styles.Thumb}>
         {poster ? (
-          <img src={`https://image.tmdb.org/t/p/w300${poster}`} alt={title} />
+          <img src={`https://image.tmdb.org/t/p/w500${poster}`} alt={title} />
         ) : (
           <img src={placeholder} alt={title} />
         )}

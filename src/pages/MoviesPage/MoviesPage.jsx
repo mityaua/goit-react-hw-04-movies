@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import queryString from 'query-string'; // Пакет для query string
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import SearchForm from '../../components/SearchForm';
 import MovieList from '../../components/MovieList';
 import Loader from '../../components/Loader';
@@ -6,6 +9,7 @@ import LoadMoreButton from '../../components/LoadMoreButton';
 
 import api from '../../services/api';
 
+// Компонент страницы поиска фильмов
 class MoviesPage extends Component {
   state = {
     movies: [],
@@ -14,6 +18,17 @@ class MoviesPage extends Component {
     isLoading: false,
     error: null,
   };
+
+  // При монтировании страницы проверяет строку запроса, и если данные есть то подставляет
+  componentDidMount() {
+    const { search, pathname } = this.props.location;
+
+    if (search && pathname) {
+      this.setState({
+        searchQuery: queryString.parse(search).query,
+      });
+    }
+  }
 
   // Запрос за фильмами при поиске
   componentDidUpdate(prevProps, prevState) {
@@ -24,15 +39,23 @@ class MoviesPage extends Component {
 
   // Принимает запрос с инпута и пишет его в стейт
   onChangeQuery = query => {
+    const { history, location } = this.props;
+
     this.setState({
       movies: [],
       searchQuery: query,
       currentPage: 1,
       error: null,
     });
+
+    // После поиска обновляет url и search шаблонной строкой
+    history.push({
+      ...location,
+      search: `query=${query}`,
+    });
   };
 
-  // Фетч фильма по слову из инпута
+  // Фетч фильма по запросу из инпута
   getMovies = async () => {
     const { searchQuery, currentPage } = this.state;
 
@@ -42,6 +65,12 @@ class MoviesPage extends Component {
 
     try {
       const results = await api.fetchMoviesBySearch(searchQuery, currentPage);
+
+      console.log(results);
+
+      if (results.length < 1) {
+        this.notify();
+      }
 
       this.setState(prevState => ({
         movies: [...prevState.movies, ...results],
@@ -57,6 +86,18 @@ class MoviesPage extends Component {
     }
   };
 
+  // Нотификация
+  notify = () =>
+    toast.info('🤔 Nothing found', {
+      position: 'top-right',
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+
   render() {
     const { movies, isLoading } = this.state;
 
@@ -69,6 +110,8 @@ class MoviesPage extends Component {
         {movies.length > 0 && <LoadMoreButton onClick={this.getMovies} />}
 
         {isLoading && <Loader />}
+
+        <ToastContainer />
       </main>
     );
   }

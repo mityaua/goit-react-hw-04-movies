@@ -3,7 +3,7 @@ import MoviePreview from '../MoviePreview';
 
 import styles from './MovieList.module.scss';
 
-// Пересмотреть формирование урла для Link?
+// Комопнент списка фильмов, принимает фильмы и location от withRouter
 const MovieList = ({ movies, location }) => (
   <ul className={styles.List}>
     {movies.map(({ id, title, poster_path }) => (
