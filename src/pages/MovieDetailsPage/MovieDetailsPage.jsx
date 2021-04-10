@@ -52,7 +52,7 @@ class MovieDetailsPage extends Component {
 
   render() {
     const { movie, isLoading } = this.state;
-    const { match } = this.props;
+    const { match, location } = this.props;
 
     return (
       <>
@@ -60,7 +60,7 @@ class MovieDetailsPage extends Component {
 
         {movie && <Movie movie={movie} />}
 
-        <MovieNavigation match={match} />
+        <MovieNavigation match={match} location={location} />
 
         {/* Роутинг на основе match.path */}
 

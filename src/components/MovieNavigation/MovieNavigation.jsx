@@ -5,7 +5,7 @@ import routes from '../../routes';
 import styles from './MovieNavigation.module.scss';
 
 // Меню актёров и обзоров
-const MovieNavigation = ({ match }) => {
+const MovieNavigation = ({ match, location }) => {
   return (
     <div>
       <b>Additional information:</b>
@@ -13,7 +13,10 @@ const MovieNavigation = ({ match }) => {
       <ul className={styles.list}>
         <li className={styles.item}>
           <NavLink
-            to={`${match.url}${routes.cast}`}
+            to={{
+              pathname: `${match.url}${routes.cast}`, // Формирует путь
+              state: { ...location.state }, // Передает полученый стейт при переходе на актёров
+            }}
             className={styles.link}
             activeClassName={styles['link--active']}
           >
@@ -22,7 +25,10 @@ const MovieNavigation = ({ match }) => {
         </li>
         <li>
           <NavLink
-            to={`${match.url}${routes.reviews}`}
+            to={{
+              pathname: `${match.url}${routes.reviews}`, // Формирует путь
+              state: { ...location.state }, // Передает полученый стейт при переходе на обзоры
+            }}
             className={styles.link}
             activeClassName={styles['link--active']}
           >
@@ -36,6 +42,7 @@ const MovieNavigation = ({ match }) => {
 
 MovieNavigation.propTypes = {
   match: PropTypes.object.isRequired,
+  location: PropTypes.object.isRequired,
 };
 
 export default MovieNavigation;
