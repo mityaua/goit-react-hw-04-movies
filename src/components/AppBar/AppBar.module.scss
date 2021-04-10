@@ -1,3 +1,8 @@
+// Стили хедера
+@import '../../variables.module.scss';
+
 .header {
   border-bottom: 1px solid #ececec;
+
+  background-color: $secondary-color;
 }

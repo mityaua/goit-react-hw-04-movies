@@ -1,3 +1,6 @@
+// Стили актёра
+@import '../../variables.module.scss';
+
 .thumb {
   // height: 250px;
 
@@ -5,13 +8,13 @@
 
   opacity: 1;
 
-  transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: opacity $transition-duration $transition-timing;
 
   &:hover,
   &:focus {
     opacity: 0.8;
 
-    transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
+    transition: opacity $transition-duration $transition-timing;
     cursor: pointer;
   }
 

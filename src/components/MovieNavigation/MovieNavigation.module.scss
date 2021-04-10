@@ -1,3 +1,6 @@
+// Стили навигации по актёрам и отзывам на странице фильма
+@import '../../variables.module.scss';
+
 .list {
   display: flex;
 }
@@ -19,7 +22,7 @@
   }
 
   &--active {
-    color: #02be6e;
+    color: $base-color;
     font-weight: 500;
   }
 }

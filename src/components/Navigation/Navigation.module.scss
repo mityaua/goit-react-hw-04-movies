@@ -1,3 +1,6 @@
+// Стили главной навигации
+@import '../../variables.module.scss';
+
 .container {
   margin: 0px auto;
   padding: 0px 15px;
@@ -29,7 +32,7 @@
   }
 
   &--active {
-    color: #02be6e;
+    color: $base-color;
     font-weight: 500;
 
     text-decoration: none;
