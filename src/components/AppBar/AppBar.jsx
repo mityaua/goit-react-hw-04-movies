@@ -3,7 +3,7 @@ import styles from './AppBar.module.scss';
 
 const AppBar = () => {
   return (
-    <header className={styles.Header}>
+    <header className={styles.header}>
       <Navigation />
     </header>
   );

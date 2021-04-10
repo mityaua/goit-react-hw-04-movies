@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import queryString from 'query-string'; // Пакет для query string
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+
 import SearchForm from '../../components/SearchForm';
 import MovieList from '../../components/MovieList';
 import Loader from '../../components/Loader';
@@ -66,10 +65,8 @@ class MoviesPage extends Component {
     try {
       const results = await api.fetchMoviesBySearch(searchQuery, currentPage);
 
-      console.log(results);
-
       if (results.length === 0) {
-        this.notify();
+        console.log('nothing');
       }
 
       this.setState(prevState => ({
@@ -86,18 +83,6 @@ class MoviesPage extends Component {
     }
   };
 
-  // Нотификация
-  notify = () =>
-    toast.info('🤔 Nothing found', {
-      position: 'top-right',
-      autoClose: 2000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-    });
-
   render() {
     const { movies, isLoading } = this.state;
 
@@ -110,8 +95,6 @@ class MoviesPage extends Component {
         {movies.length > 0 && <LoadMoreButton onClick={this.getMovies} />}
 
         {isLoading && <Loader />}
-
-        <ToastContainer />
       </main>
     );
   }

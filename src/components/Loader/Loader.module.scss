@@ -1,4 +1,4 @@
-.Loader {
+.loader {
   position: absolute;
   top: 50%;
   right: 50%;
@@ -7,82 +7,3 @@
   display: flex;
   justify-content: center;
 }
-
-// .Container {
-//   position: absolute;
-//   top: 50%;
-//   right: 50%;
-//   // transform: translate(50%, 0);
-
-//   display: flex;
-//   justify-content: center;
-//   height: auto;
-// }
-
-// svg {
-//   display: none;
-// }
-
-// .SpinnerContainer {
-//   width: 50%;
-//   height: 50%;
-//   position: relative;
-//   filter: url(#gooey);
-// }
-
-// .SpinnerPath {
-//   position: relative;
-//   left: 25%;
-//   top: 50%;
-//   width: 10rem;
-//   height: 10rem;
-
-//   > * {
-//     animation: spinner 3s infinite;
-
-//     &:after {
-//       content: ' ';
-//       display: block;
-//       position: absolute;
-//       width: 2rem;
-//       height: 2rem;
-//       border-radius: 50%;
-//     }
-
-//     &:nth-child(1) {
-//       animation-delay: 0.5s;
-//       &:after {
-//         background: #4285f4;
-//       }
-//     }
-
-//     &:nth-child(2) {
-//       animation-delay: 1s;
-//       &:after {
-//         background: #db4437;
-//       }
-//     }
-
-//     &:nth-child(3) {
-//       animation-delay: 1.5;
-//       &:after {
-//         background: #f4b400;
-//       }
-//     }
-//     &:nth-child(4) {
-//       animation-delay: 2s;
-//       &:after {
-//         background: #0f9d58;
-//       }
-//     }
-//   }
-// }
-
-// @keyframes spinner {
-//   0% {
-//     transform: rotate(0deg);
-//   }
-//   100% {
-//     transform: rotate(360deg);
-//   }
-// }

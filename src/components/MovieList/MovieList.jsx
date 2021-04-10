@@ -7,15 +7,15 @@ import styles from './MovieList.module.scss';
 // Комопнент списка фильмов, принимает фильмы и location от withRouter
 const MovieList = ({ movies, location }) => {
   return (
-    <ul className={styles.List}>
+    <ul className={styles.list}>
       {movies.map(({ id, title, poster_path }) => (
-        <li key={id} className={styles.Item}>
+        <li key={id} className={styles.item}>
           <Link
             to={{
               pathname: `/movies/${id}`,
               state: { from: location },
             }}
-            className={styles.Link}
+            className={styles.link}
           >
             <MoviePreview title={title} poster={poster_path} />
           </Link>

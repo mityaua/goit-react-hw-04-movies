@@ -27,14 +27,14 @@ const SearchForm = ({ onSearch }) => {
   const resetForm = () => setQuery('');
 
   return (
-    <div className={styles.SearchWrapp}>
-      <form className={styles.SearchForm} onSubmit={handleSubmit}>
-        <button type="submit" className={styles['SearchForm-button']}>
-          <span className={styles['SearchForm-button-label']}>Search</span>
+    <div className={styles.wrapp}>
+      <form className={styles.form} onSubmit={handleSubmit}>
+        <button type="submit" className={styles.button}>
+          <span className={styles.label}>Search</span>
         </button>
 
         <input
-          className={styles['SearchForm-input']}
+          className={styles.input}
           type="text"
           name="query"
           value={query}

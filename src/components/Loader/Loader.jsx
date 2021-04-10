@@ -7,7 +7,7 @@ const loaderRoot = document.querySelector('#loader-root');
 
 const Loader = () => {
   return createPortal(
-    <div className={styles.Loader}>
+    <div className={styles.loader}>
       <Template type="Audio" color="#02be6e" height={100} width={100} />
     </div>,
     loaderRoot,

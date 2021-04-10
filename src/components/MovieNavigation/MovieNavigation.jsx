@@ -1,6 +1,7 @@
 import { NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
+import routes from '../../routes';
 import styles from './MovieNavigation.module.scss';
 
 // Меню актёров и обзоров
@@ -9,21 +10,21 @@ const MovieNavigation = ({ match }) => {
     <div>
       <b>Additional information:</b>
 
-      <ul className={styles.List}>
-        <li className={styles.Item}>
+      <ul className={styles.list}>
+        <li className={styles.item}>
           <NavLink
-            to={`${match.url}/cast/`}
-            className={styles.Link}
-            activeClassName={styles['Link--active']}
+            to={`${match.url}${routes.cast}`}
+            className={styles.link}
+            activeClassName={styles['link--active']}
           >
             Cast
           </NavLink>
         </li>
         <li>
           <NavLink
-            to={`${match.url}/reviews/`}
-            className={styles.Link}
-            activeClassName={styles['Link--active']}
+            to={`${match.url}${routes.reviews}`}
+            className={styles.link}
+            activeClassName={styles['link--active']}
           >
             Reviews
           </NavLink>

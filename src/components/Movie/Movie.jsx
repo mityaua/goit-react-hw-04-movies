@@ -1,7 +1,6 @@
 import PropTypes from 'prop-types';
 
 import styles from './Movie.module.scss';
-
 import placeholder from '../../assets/images/placeholder.png';
 
 // Компонент полной карточки фильма
@@ -16,22 +15,22 @@ const Movie = ({ movie }) => {
   } = movie;
 
   return (
-    <article className={styles.Article}>
-      <div className={styles.Thumb}>
+    <article className={styles.article}>
+      <div className={styles.thumb}>
         {poster_path ? (
           <img
             src={`https://image.tmdb.org/t/p/w500${poster_path}`}
             alt={title}
-            className={styles.Poster}
+            className={styles.poster}
           />
         ) : (
-          <img src={placeholder} alt={title} className={styles.Poster} />
+          <img src={placeholder} alt={title} className={styles.poster} />
         )}
       </div>
 
       <div>
         {title && (
-          <h1 className={styles.Title}>
+          <h1 className={styles.title}>
             {title}{' '}
             {release_date ? (
               <span>({release_date.substring(0, 4)})</span>
@@ -41,22 +40,22 @@ const Movie = ({ movie }) => {
           </h1>
         )}
 
-        <p className={styles.Score}>
-          <b className={styles.Label}>User score:</b>
+        <p className={styles.score}>
+          <b className={styles.label}>User score:</b>
           {vote_average ? <span>{vote_average * 10}%</span> : <span>N/A</span>}
         </p>
 
-        <p className={styles.Overview}>
-          <b className={styles.Label}>Overview:</b>
+        <p className={styles.overview}>
+          <b className={styles.label}>Overview:</b>
           {overview ? <span>{overview}</span> : <span>N/A</span>}
         </p>
 
-        <b className={styles.Label}>Genres:</b>
+        <b className={styles.label}>Genres:</b>
 
         {genres.length > 0 ? (
-          <ul className={styles.GenresList}>
+          <ul className={styles.genresList}>
             {genres.map(({ id, name }) => (
-              <li key={id} className={styles.GenresItem}>
+              <li key={id} className={styles.genresItem}>
                 <span>{name}</span>
               </li>
             ))}

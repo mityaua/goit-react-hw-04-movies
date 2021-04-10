@@ -46,10 +46,10 @@ class Reviews extends Component {
         {isLoading && <Loader />}
 
         {reviews.length > 0 ? (
-          <ul className={styles.List}>
+          <ul className={styles.list}>
             {reviews.map(({ id, author, content }) => {
               return (
-                <li key={id} className={styles.Item}>
+                <li key={id} className={styles.item}>
                   <Review author={author} content={content} />
                 </li>
               );

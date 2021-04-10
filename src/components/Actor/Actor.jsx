@@ -6,14 +6,14 @@ import placeholder from '../../assets/images/placeholder.png';
 const Actor = ({ photo, name, character }) => {
   return (
     <div>
-      <div className={styles.Thumb}>
+      <div className={styles.thumb}>
         {photo ? (
           <img src={`https://image.tmdb.org/t/p/w300${photo}`} alt={name} />
         ) : (
           <img src={placeholder} alt={name} />
         )}
       </div>
-      <p className={styles.Name}>{name}</p>
+      <p className={styles.name}>{name}</p>
       <p>
         <span>Character: </span>
         <b>{character}</b>

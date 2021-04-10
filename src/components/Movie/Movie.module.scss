@@ -1,4 +1,4 @@
-.Article {
+.article {
   padding-bottom: 20px;
 
   @media screen and (min-width: 768px) {
@@ -6,19 +6,19 @@
   }
 }
 
-.Title {
+.title {
   margin-bottom: 20px;
 }
 
-.Score {
+.score {
   margin-bottom: 20px;
 }
 
-.Overview {
+.overview {
   margin-bottom: 20px;
 }
 
-.Thumb {
+.thumb {
   margin-bottom: 20px;
 
   @media screen and (min-width: 768px) {
@@ -26,7 +26,7 @@
   }
 }
 
-.Poster {
+.poster {
   height: auto;
 
   @media screen and (min-width: 768px) {
@@ -34,15 +34,15 @@
   }
 }
 
-.Label {
+.label {
   margin-right: 5px;
 }
 
-.GenresList {
+.genresList {
   margin-top: 10px;
 }
 
-.GenresItem {
+.genresItem {
   list-style: inside;
 
   &:not(:last-child) {

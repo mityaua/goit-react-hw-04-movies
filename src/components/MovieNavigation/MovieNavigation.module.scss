@@ -1,12 +1,12 @@
-.List {
+.list {
   display: flex;
 }
 
-.Item:not(:last-child) {
+.item:not(:last-child) {
   margin-right: 20px;
 }
 
-.Link {
+.link {
   display: block;
   padding-top: 10px;
   padding-bottom: 10px;

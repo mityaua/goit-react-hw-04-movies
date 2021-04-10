@@ -1,8 +1,8 @@
-.List {
+.list {
   margin-bottom: 20px;
 }
 
-.Item {
+.item {
   &:not(:last-child) {
     margin-bottom: 20px;
   }

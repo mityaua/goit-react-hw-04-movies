@@ -46,10 +46,10 @@ class Cast extends Component {
         {isLoading && <Loader />}
 
         {actors.length > 0 ? (
-          <ul className={styles.List}>
+          <ul className={styles.list}>
             {actors.map(({ id, profile_path, name, character }) => {
               return (
-                <li key={id} className={styles.Item}>
+                <li key={id} className={styles.item}>
                   <Actor
                     photo={profile_path}
                     name={name}

@@ -4,14 +4,14 @@ import routes from '../../routes';
 import styles from './Navigation.module.scss';
 
 const Navigation = () => (
-  <nav className={styles.Container}>
-    <ul className={styles.NavList}>
-      <li className={styles.NavItem}>
+  <nav className={styles.container}>
+    <ul className={styles.list}>
+      <li className={styles.item}>
         <NavLink
           exact
           to={routes.home}
-          className={styles.Navlink}
-          activeClassName={styles['Navlink--active']}
+          className={styles.link}
+          activeClassName={styles['link--active']}
         >
           Home
         </NavLink>
@@ -20,8 +20,8 @@ const Navigation = () => (
       <li>
         <NavLink
           to={routes.movies}
-          className={styles.Navlink}
-          activeClassName={styles['Navlink--active']}
+          className={styles.link}
+          activeClassName={styles['link--active']}
         >
           Movies
         </NavLink>
