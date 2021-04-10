@@ -39,7 +39,6 @@ class HomePage extends Component {
 
     return (
       <main>
-        {/* Нужна проверка на буль */}
         {trends ? (
           <MovieList movies={trends} />
         ) : (

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Review from '../Review';
 import Loader from '../Loader';
 
@@ -22,7 +23,6 @@ class Reviews extends Component {
 
     try {
       const { results } = await api.fetchReviews(movieId);
-      console.log(results);
 
       this.setState({
         reviews: [...results],
@@ -62,5 +62,9 @@ class Reviews extends Component {
     );
   }
 }
+
+Reviews.propTypes = {
+  match: PropTypes.object.isRequired,
+};
 
 export default Reviews;

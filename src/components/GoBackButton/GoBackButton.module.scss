@@ -1,0 +1,18 @@
+.button {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding: 5px 20px;
+
+  border: none;
+
+  transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+
+  &:hover,
+  &:focus {
+    color: white;
+    background-color: #02be6e;
+
+    transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+}

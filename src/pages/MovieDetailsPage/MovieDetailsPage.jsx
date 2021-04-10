@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import GoBackButton from '../../components/GoBackButton';
 import Movie from '../../components/Movie';
+import MovieNavigation from '../../components/MovieNavigation';
 import Cast from '../../components/Cast';
 import Reviews from '../../components/Reviews';
 import Loader from '../../components/Loader';
-import { NavLink, Route, Switch } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 
 import routes from '../../routes';
 import api from '../../services/api';
-
-import styles from './MovieDetailsPage.module.scss';
 
 class MovieDetailsPage extends Component {
   state = {
@@ -55,50 +56,33 @@ class MovieDetailsPage extends Component {
 
     return (
       <>
-        <button
-          type="button"
-          className={styles.Back}
-          onClick={this.handleGoBack}
-        >
-          Go back
-        </button>
+        <GoBackButton onBack={this.handleGoBack} />
 
         {movie && <Movie movie={movie} />}
 
-        {/* Меню актёров и обзоров */}
-        <b>Additional information:</b>
+        <MovieNavigation match={match} />
 
-        <ul className={styles.List}>
-          <li className={styles.Item}>
-            <NavLink
-              to={`${match.url}/cast/`}
-              className={styles.Link}
-              activeClassName={styles['Link--active']}
-            >
-              Cast
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              to={`${match.url}/reviews/`}
-              className={styles.Link}
-              activeClassName={styles['Link--active']}
-            >
-              Reviews
-            </NavLink>
-          </li>
-        </ul>
+        {/* Роутинг на основе match.path */}
+
+        <Switch>
+          <Route exact path={`${match.path}${routes.cast}`} component={Cast} />
+          <Route
+            exact
+            path={`${match.path}${routes.reviews}`}
+            component={Reviews}
+          />
+        </Switch>
 
         {isLoading && <Loader />}
-
-        {/* Роутинг на основе шаблона match.path */}
-        <Switch>
-          <Route exact path={`${match.path}/cast/`} component={Cast} />
-          <Route exact path={`${match.path}/reviews/`} component={Reviews} />
-        </Switch>
       </>
     );
   }
 }
+
+MovieDetailsPage.propTypes = {
+  match: PropTypes.object.isRequired,
+  location: PropTypes.object.isRequired,
+  history: PropTypes.object.isRequired,
+};
 
 export default MovieDetailsPage;

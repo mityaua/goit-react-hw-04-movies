@@ -1,6 +1,8 @@
 import { Component } from 'react';
+import PropTypes from 'prop-types';
 import Actor from '../Actor';
 import Loader from '../Loader';
+
 import api from '../../services/api';
 
 import styles from './Cast.module.scss';
@@ -64,5 +66,9 @@ class Cast extends Component {
     );
   }
 }
+
+Cast.propTypes = {
+  match: PropTypes.object.isRequired,
+};
 
 export default Cast;

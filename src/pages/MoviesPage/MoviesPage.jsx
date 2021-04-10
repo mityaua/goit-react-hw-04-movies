@@ -68,7 +68,7 @@ class MoviesPage extends Component {
 
       console.log(results);
 
-      if (results.length < 1) {
+      if (results.length === 0) {
         this.notify();
       }
 

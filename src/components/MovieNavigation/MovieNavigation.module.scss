@@ -1,0 +1,25 @@
+.List {
+  display: flex;
+}
+
+.Item:not(:last-child) {
+  margin-right: 20px;
+}
+
+.Link {
+  display: block;
+  padding-top: 10px;
+  padding-bottom: 10px;
+
+  color: currentColor;
+
+  &:hover,
+  &:focus {
+    text-decoration: none;
+  }
+
+  &--active {
+    color: #02be6e;
+    font-weight: 500;
+  }
+}

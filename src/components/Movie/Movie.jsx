@@ -1,7 +1,10 @@
+import PropTypes from 'prop-types';
+
 import styles from './Movie.module.scss';
 
 import placeholder from '../../assets/images/placeholder.png';
 
+// Компонент полной карточки фильма
 const Movie = ({ movie }) => {
   const {
     title,
@@ -64,6 +67,32 @@ const Movie = ({ movie }) => {
       </div>
     </article>
   );
+};
+
+Movie.defaultProps = {
+  movie: PropTypes.shape({
+    release_date: '',
+    vote_average: 0,
+    poster_path: placeholder,
+    overview: '',
+    genres: [],
+  }),
+};
+
+Movie.propTypes = {
+  movie: PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    release_date: PropTypes.string,
+    vote_average: PropTypes.number,
+    poster_path: PropTypes.string,
+    overview: PropTypes.string,
+    genres: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.number,
+        name: PropTypes.string,
+      }),
+    ),
+  }),
 };
 
 export default Movie;

@@ -16,10 +16,8 @@ const SearchForm = ({ onSearch }) => {
   const handleSubmit = e => {
     e.preventDefault();
 
-    // Запрещает отправку пустого инпута
     if (!query) return;
 
-    // Отдать данные внешнему компоненту
     onSearch(query);
 
     resetForm();

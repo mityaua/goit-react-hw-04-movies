@@ -4,6 +4,7 @@ import styles from './MoviePreview.modue.scss';
 
 import placeholder from '../../assets/images/placeholder.png';
 
+// Компонент превью фильма в общем списке фильмов
 const MoviePreview = ({ title, poster }) => {
   return (
     <div>
