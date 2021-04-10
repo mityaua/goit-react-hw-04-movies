@@ -1,10 +1,16 @@
 // Стили блока обзоров к фильму
+@import '../../variables.module.scss';
 
 .list {
   margin-bottom: 20px;
 }
 
 .item {
+  padding: 20px;
+  border-radius: 5px;
+
+  background-color: $secondary-color;
+
   &:not(:last-child) {
     margin-bottom: 20px;
   }

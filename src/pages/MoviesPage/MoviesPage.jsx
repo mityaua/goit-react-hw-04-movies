@@ -18,7 +18,7 @@ class MoviesPage extends Component {
     error: null,
   };
 
-  // При монтировании страницы проверяет строку запроса, и если данные есть то подставляет
+  // При монтировании страницы проверяет обьект location, и если данные есть то парсит и подставляет как запрос
   componentDidMount() {
     const { search, pathname } = this.props.location;
 
@@ -38,7 +38,7 @@ class MoviesPage extends Component {
 
   // Принимает запрос с инпута и пишет его в стейт
   onChangeQuery = query => {
-    const { history, location } = this.props;
+    const { history } = this.props;
 
     this.setState({
       movies: [],
@@ -49,7 +49,6 @@ class MoviesPage extends Component {
 
     // После поиска обновляет url и search шаблонной строкой
     history.push({
-      ...location,
       search: `query=${query}`,
     });
   };
