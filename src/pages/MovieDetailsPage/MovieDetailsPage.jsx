@@ -43,11 +43,11 @@ class MovieDetailsPage extends Component {
     }
   }
 
-  // Метод для кнопки "Назад" с проверкой на стейт истории и редиректом на главную
+  // Метод для кнопки "Назад"
   handleGoBack = () => {
-    const { location, history } = this.props;
+    const { location, history } = this.props; // Берёт из приходящих пропсов обьект текущего пути и историю
 
-    history.push(location?.state?.from || routes.home);
+    history.push(location?.state?.from || routes.home); // При клике пушит в историю новый лист + проверяет и кидает на главную
   };
 
   render() {

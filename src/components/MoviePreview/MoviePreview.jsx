@@ -11,7 +11,7 @@ const MoviePreview = ({ title, poster, vote }) => {
   const voteStyle = vote > 5 ? styles['vote--top'] : styles['vote--low'];
 
   return (
-    <div>
+    <div className={styles.card}>
       <div className={styles.thumb}>
         <img
           src={posterUrl}

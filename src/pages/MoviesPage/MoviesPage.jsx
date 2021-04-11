@@ -18,7 +18,7 @@ class MoviesPage extends Component {
     error: null,
   };
 
-  // При монтировании страницы проверяет обьект location, и если данные есть то парсит и подставляет как запрос
+  // При монтировании страницы проверяет обьект location, и если данные есть то парсит и пишет в стейт
   componentDidMount() {
     const { search, pathname } = this.props.location;
 
@@ -47,7 +47,7 @@ class MoviesPage extends Component {
       error: null,
     });
 
-    // После поиска обновляет url и search шаблонной строкой
+    // После поиска пишет в search истории шаблонную строку
     history.push({
       search: `query=${query}`,
     });

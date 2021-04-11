@@ -13,8 +13,8 @@ const MovieList = ({ movies, location }) => {
         <li key={id} className={styles.item}>
           <Link
             to={{
-              pathname: `${routes.movies}/${id}`,
-              state: { from: location },
+              pathname: `${routes.movies}/${id}`, // Заменяем стандартный путь в to
+              state: { from: location }, // Передает данные из текущего маршрута в следующий
             }}
             className={styles.link}
           >
