@@ -2,11 +2,11 @@
 @import '../../variables.module.scss';
 
 .card {
+  position: relative;
   border-radius: 5px;
 }
 
 .thumb {
-  position: relative;
   height: 250px;
 
   @media screen and (min-width: 370px) and (max-width: 767px) {
@@ -33,16 +33,30 @@
 
 .text {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   padding: 10px;
 
   font-size: 18px;
 }
 
-.vote--top {
-  color: $base-color;
-}
+.vote {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  padding: 5px;
+  border-radius: 5px;
 
-.vote--low {
-  color: tomato;
+  background-color: $secondary-color;
+
+  opacity: 0.8;
+
+  &--top {
+    composes: vote;
+    color: $base-color;
+  }
+
+  &--low {
+    composes: vote;
+    color: tomato;
+  }
 }

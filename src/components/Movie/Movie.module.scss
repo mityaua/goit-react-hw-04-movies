@@ -1,5 +1,9 @@
 // Стили фильма
+@import '../../variables.module.scss';
+
 .article {
+  position: relative;
+
   padding-bottom: 20px;
 
   @media screen and (min-width: 768px) {
@@ -13,6 +17,28 @@
 
 .score {
   margin-bottom: 20px;
+}
+
+.vote {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  padding: 5px;
+  border-radius: 5px;
+
+  background-color: $secondary-color;
+
+  opacity: 0.8;
+
+  &--top {
+    composes: vote;
+    color: $base-color;
+  }
+
+  &--low {
+    composes: vote;
+    color: tomato;
+  }
 }
 
 .overview {

@@ -17,6 +17,8 @@ const Movie = ({ movie }) => {
   const posterUrl = poster_path
     ? `https://image.tmdb.org/t/p/w500${poster_path}`
     : placeholder;
+  const voteStyle =
+    vote_average > 5 ? styles['vote--top'] : styles['vote--low'];
 
   return (
     <article className={styles.article}>
@@ -44,6 +46,7 @@ const Movie = ({ movie }) => {
         <p className={styles.score}>
           <b className={styles.label}>User score:</b>
           {vote_average ? <span>{vote_average * 10}%</span> : <span>N/A</span>}
+          {vote_average ? <b className={voteStyle}>{vote_average}</b> : null}
         </p>
 
         <p className={styles.overview}>
