@@ -4,14 +4,14 @@ import styles from './Actor.module.scss';
 import placeholder from '../../assets/images/placeholder.png';
 
 const Actor = ({ photo, name, character }) => {
+  const photoUrl = photo
+    ? `https://image.tmdb.org/t/p/w300${photo}`
+    : placeholder;
+
   return (
     <div>
       <div className={styles.thumb}>
-        {photo ? (
-          <img src={`https://image.tmdb.org/t/p/w300${photo}`} alt={name} />
-        ) : (
-          <img src={placeholder} alt={name} />
-        )}
+        <img src={photoUrl} className={styles.photo} alt={name} />
       </div>
       <p className={styles.name}>{name}</p>
       <p>

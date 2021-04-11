@@ -9,7 +9,7 @@ import styles from './MovieList.module.scss';
 const MovieList = ({ movies, location }) => {
   return (
     <ul className={styles.list}>
-      {movies.map(({ id, title, poster_path }) => (
+      {movies.map(({ id, title, poster_path, vote_average }) => (
         <li key={id} className={styles.item}>
           <Link
             to={{
@@ -18,7 +18,11 @@ const MovieList = ({ movies, location }) => {
             }}
             className={styles.link}
           >
-            <MoviePreview title={title} poster={poster_path} />
+            <MoviePreview
+              title={title}
+              poster={poster_path}
+              vote={vote_average}
+            />
           </Link>
         </li>
       ))}

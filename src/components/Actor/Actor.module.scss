@@ -2,25 +2,22 @@
 @import '../../variables.module.scss';
 
 .thumb {
-  // height: 250px;
-
   margin-bottom: 5px;
 
   opacity: 1;
-
   transition: opacity $transition-duration $transition-timing;
 
   &:hover,
   &:focus {
     opacity: 0.8;
-
     transition: opacity $transition-duration $transition-timing;
     cursor: pointer;
   }
 
-  & > img {
+  .photo {
     width: 100%;
     height: 100%;
+    border-radius: 5px;
 
     object-fit: cover;
     object-position: top;

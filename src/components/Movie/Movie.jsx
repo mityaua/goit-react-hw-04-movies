@@ -14,18 +14,19 @@ const Movie = ({ movie }) => {
     genres,
   } = movie;
 
+  const posterUrl = poster_path
+    ? `https://image.tmdb.org/t/p/w500${poster_path}`
+    : placeholder;
+
   return (
     <article className={styles.article}>
       <div className={styles.thumb}>
-        {poster_path ? (
-          <img
-            src={`https://image.tmdb.org/t/p/w500${poster_path}`}
-            alt={title}
-            className={styles.poster}
-          />
-        ) : (
-          <img src={placeholder} alt={title} className={styles.poster} />
-        )}
+        <img
+          src={posterUrl}
+          alt={title}
+          title={title}
+          className={styles.poster}
+        />
       </div>
 
       <div>
