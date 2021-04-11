@@ -71,6 +71,7 @@ class MoviesPage extends Component {
       this.setState(prevState => ({
         movies: [...prevState.movies, ...results],
         currentPage: prevState.currentPage + 1,
+        isLoading: true,
       }));
     } catch (error) {
       console.error('Smth wrong with search fetch', error);

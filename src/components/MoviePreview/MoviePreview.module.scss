@@ -2,8 +2,21 @@
 @import '../../variables.module.scss';
 
 .thumb {
-  height: 400px;
+  position: relative;
+  height: 250px;
   margin-bottom: 5px;
+
+  @media screen and (min-width: 370px) and (max-width: 767px) {
+    height: 300px;
+  }
+
+  @media screen and (min-width: 768px) and (max-width: 1169px) {
+    height: 350px;
+  }
+
+  @media screen and (min-width: 1170px) {
+    height: 400px;
+  }
 }
 
 .poster {

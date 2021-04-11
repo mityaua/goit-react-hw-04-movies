@@ -15,7 +15,7 @@ class Cast extends Component {
   };
 
   async componentDidMount() {
-    const { movieId } = this.props.match.params;
+    const { movieId } = this.props.match.params; // Получаем id фильма из match.params
 
     this.setState({
       isLoading: true,

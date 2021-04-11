@@ -20,7 +20,7 @@ class MovieDetailsPage extends Component {
 
   // Запрос за фильмом при маунте
   async componentDidMount() {
-    const { movieId } = this.props.match.params;
+    const { movieId } = this.props.match.params; // Получаем id фильма из match.params
 
     this.setState({
       isLoading: true,
