@@ -29,7 +29,7 @@ const SearchForm = ({ onSearch }) => {
   return (
     <div className={styles.wrapp}>
       <form className={styles.form} onSubmit={handleSubmit}>
-        <button type="submit" className={styles.button}>
+        <button type="submit" title="Go" className={styles.button}>
           <span className={styles.label}>Search</span>
         </button>
 

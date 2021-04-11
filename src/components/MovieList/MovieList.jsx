@@ -2,6 +2,7 @@ import { Link, withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import MoviePreview from '../MoviePreview';
 
+import routes from '../../routes';
 import styles from './MovieList.module.scss';
 
 // Комопнент списка фильмов, принимает фильмы и location от withRouter
@@ -12,7 +13,7 @@ const MovieList = ({ movies, location }) => {
         <li key={id} className={styles.item}>
           <Link
             to={{
-              pathname: `/movies/${id}`,
+              pathname: `${routes.movies}/${id}`,
               state: { from: location },
             }}
             className={styles.link}

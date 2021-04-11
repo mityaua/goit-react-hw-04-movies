@@ -60,7 +60,7 @@ class MovieDetailsPage extends Component {
 
         {movie && <Movie movie={movie} />}
 
-        <MovieNavigation match={match} location={location} />
+        {movie && <MovieNavigation match={match} location={location} />}
 
         {/* Роутинг на основе match.path */}
 
