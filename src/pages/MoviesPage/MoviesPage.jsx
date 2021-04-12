@@ -20,13 +20,16 @@ class MoviesPage extends Component {
     error: null,
   };
 
-  // При монтировании страницы проверяет обьект location, и если данные есть то парсит и пишет в стейт
+  // При монтировании страницы берём из пропсов location два параметра: search и pathname.
+  // Парсим из обьекта search строку query
+  // Проверяем на наличие search && pathname и если есть тогда обновляет в стейте searchQuery на query
   componentDidMount() {
     const { search, pathname } = this.props.location;
+    const { query } = queryString.parse(search);
 
     if (search && pathname) {
       this.setState({
-        searchQuery: queryString.parse(search).query,
+        searchQuery: query,
       });
     }
   }
