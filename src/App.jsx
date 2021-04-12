@@ -2,6 +2,7 @@ import { Suspense, lazy } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import Container from './components/Container';
 import AppBar from './components/AppBar';
+import AppFooter from './components/AppFooter';
 import Loader from './components/Loader';
 
 import routes from './routes';
@@ -36,6 +37,8 @@ const App = () => (
         </Switch>
       </Suspense>
     </Container>
+
+    <AppFooter />
   </>
 );
 
