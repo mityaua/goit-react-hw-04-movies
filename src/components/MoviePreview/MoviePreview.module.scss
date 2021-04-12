@@ -46,17 +46,16 @@
   padding: 5px;
   border-radius: 5px;
 
+  color: #ffffff;
   background-color: $secondary-color;
-
-  opacity: 0.8;
 
   &--top {
     composes: vote;
-    color: $base-color;
+    background-color: $base-color;
   }
 
   &--low {
     composes: vote;
-    color: tomato;
+    background-color: tomato;
   }
 }

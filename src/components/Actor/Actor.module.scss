@@ -2,10 +2,15 @@
 @import '../../variables.module.scss';
 
 .thumb {
+  height: 300px;
   margin-bottom: 5px;
 
   opacity: 1;
   transition: opacity $transition-duration $transition-timing;
+
+  @media screen and (min-width: 768px) {
+    height: 250px;
+  }
 
   &:hover,
   &:focus {
@@ -21,13 +26,11 @@
 
     object-fit: cover;
     object-position: top;
-  }
 
-  @media screen and (min-width: 768px) {
-    height: 250px;
-
-    object-fit: cover;
-    object-position: top;
+    @media screen and (min-width: 768px) {
+      object-fit: cover;
+      object-position: top;
+    }
   }
 }
 

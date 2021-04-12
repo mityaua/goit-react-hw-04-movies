@@ -5,8 +5,10 @@ import SearchForm from '../../components/SearchForm';
 import MovieList from '../../components/MovieList';
 import Loader from '../../components/Loader';
 import LoadMoreButton from '../../components/LoadMoreButton';
+import { ToastContainer, toast } from 'react-toastify';
 
 import api from '../../services/api';
+import 'react-toastify/dist/ReactToastify.min.css';
 
 // Компонент страницы поиска фильмов
 class MoviesPage extends Component {
@@ -65,7 +67,9 @@ class MoviesPage extends Component {
       const results = await api.fetchMoviesBySearch(searchQuery, currentPage);
 
       if (results.length === 0) {
-        console.log('nothing');
+        toast.info('Nothing found 🙄', {
+          autoClose: 2000,
+        });
       }
 
       this.setState(prevState => ({
@@ -95,6 +99,8 @@ class MoviesPage extends Component {
         {movies.length > 0 && <LoadMoreButton onClick={this.getMovies} />}
 
         {isLoading && <Loader />}
+
+        <ToastContainer />
       </main>
     );
   }
