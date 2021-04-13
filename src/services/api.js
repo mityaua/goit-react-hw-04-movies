@@ -1,12 +1,14 @@
 import axios from 'axios';
+import { apiKey } from './key';
+
 axios.defaults.baseURL = 'https://api.themoviedb.org/3/';
 
-const API_KEY = '249f222afb1002186f4d88b2b5418b55';
+// const API_KEY = '249f222afb1002186f4d88b2b5418b55';
 
 // Фетч трендов
 const fetchTrends = async () => {
   try {
-    const { data } = await axios.get(`trending/movie/day?api_key=${API_KEY}`);
+    const { data } = await axios.get(`trending/movie/day?api_key=${apiKey}`);
     const trends = data.results;
 
     return trends;
@@ -19,7 +21,7 @@ const fetchTrends = async () => {
 const fetchMoviesBySearch = async (searchQuery, currentPage) => {
   try {
     const { data } = await axios.get(
-      `search/movie?api_key=${API_KEY}&query=${searchQuery}&page=${currentPage}&language=en-US`,
+      `search/movie?api_key=${apiKey}&query=${searchQuery}&page=${currentPage}&language=en-US`,
     );
 
     const results = data.results;
@@ -34,7 +36,7 @@ const fetchMoviesBySearch = async (searchQuery, currentPage) => {
 const fetchMovieById = async id => {
   try {
     const { data } = await axios.get(
-      `/movie/${id}?api_key=${API_KEY}&language=en-US`,
+      `/movie/${id}?api_key=${apiKey}&language=en-US`,
     );
 
     return data;
@@ -47,7 +49,7 @@ const fetchMovieById = async id => {
 const fetchCast = async id => {
   try {
     const { data } = await axios.get(
-      `/movie/${id}/credits?api_key=${API_KEY}&language=en-US`,
+      `/movie/${id}/credits?api_key=${apiKey}&language=en-US`,
     );
 
     return data;
@@ -60,7 +62,7 @@ const fetchCast = async id => {
 const fetchReviews = async id => {
   try {
     const { data } = await axios.get(
-      `/movie/${id}/reviews?api_key=${API_KEY}&language=en-US&page=1`,
+      `/movie/${id}/reviews?api_key=${apiKey}&language=en-US&page=1`,
     );
 
     return data;
