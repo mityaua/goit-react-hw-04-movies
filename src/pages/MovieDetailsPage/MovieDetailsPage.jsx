@@ -59,7 +59,7 @@ const MovieDetailsPage = () => {
 
       {movie && <Movie movie={movie} />}
 
-      {movie && <MovieNavigation match={match} location={location} />}
+      {movie && <MovieNavigation />}
 
       {/* Роутинг на основе match.path */}
 

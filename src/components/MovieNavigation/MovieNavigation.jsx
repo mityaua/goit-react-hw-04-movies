@@ -1,3 +1,4 @@
+import { useRouteMatch, useLocation, withRouter } from 'react-router-dom';
 import { NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
@@ -5,7 +6,10 @@ import routes from '../../routes';
 import styles from './MovieNavigation.module.scss';
 
 // Меню актёров и обзоров
-const MovieNavigation = ({ match, location }) => {
+const MovieNavigation = () => {
+  const location = useLocation();
+  const match = useRouteMatch();
+
   return (
     <div>
       <b>Additional information:</b>
@@ -14,7 +18,7 @@ const MovieNavigation = ({ match, location }) => {
         <li className={styles.item}>
           <NavLink
             to={{
-              pathname: `${match.url}${routes.cast}`, // Формирует путь
+              pathname: `${match.url}${routes.cast}`, // Формирует путь для ссылки
               state: { ...location.state }, // Передает полученый стейт при переходе на актёров
             }}
             className={styles.link}
@@ -26,7 +30,7 @@ const MovieNavigation = ({ match, location }) => {
         <li>
           <NavLink
             to={{
-              pathname: `${match.url}${routes.reviews}`, // Формирует путь
+              pathname: `${match.url}${routes.reviews}`, // Формирует путь для ссылки
               state: { ...location.state }, // Передает полученый стейт при переходе на обзоры
             }}
             className={styles.link}
@@ -45,4 +49,4 @@ MovieNavigation.propTypes = {
   location: PropTypes.object.isRequired,
 };
 
-export default MovieNavigation;
+export default withRouter(MovieNavigation);
