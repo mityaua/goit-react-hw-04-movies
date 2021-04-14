@@ -26,13 +26,13 @@ const MoviesPage = () => {
   // eslint-disable-next-line
   const [error, setError] = useState(null);
 
-  // При монтировании делает запрос за фильмами. Если query в search пустой то ничего не делает.
+  // При монтировании делает запрос за фильмами. Если в searchQuery пусто то ничего не делает.
   useEffect(() => {
-    if (!query) return;
+    if (!searchQuery) return;
 
     getMovies();
     // eslint-disable-next-line
-  }, [query]);
+  }, [searchQuery]);
 
   // Фетч фильма по запросу из инпута
   const getMovies = async () => {
