@@ -1,6 +1,9 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types';
+import { ToastContainer, toast } from 'react-toastify';
+
 import styles from './SearchForm.module.scss';
+import 'react-toastify/dist/ReactToastify.min.css';
 
 const SearchForm = ({ onSearch }) => {
   const [query, setQuery] = useState('');
@@ -16,7 +19,12 @@ const SearchForm = ({ onSearch }) => {
   const handleSubmit = e => {
     e.preventDefault();
 
-    if (!query) return;
+    if (!query.trim()) {
+      toast.info('Please write your request', {
+        autoClose: 2000,
+      });
+      return;
+    }
 
     onSearch(query);
 
@@ -41,8 +49,11 @@ const SearchForm = ({ onSearch }) => {
           onChange={handleSearchInput}
           autoComplete="off"
           placeholder="Search movies"
+          required
         />
       </form>
+
+      <ToastContainer />
     </div>
   );
 };
