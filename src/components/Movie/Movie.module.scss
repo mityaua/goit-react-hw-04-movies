@@ -30,12 +30,12 @@
   background-color: $secondary-color;
 
   &--top {
-    composes: vote;
+    @extend .vote;
     background-color: $base-color;
   }
 
   &--low {
-    composes: vote;
+    @extend .vote;
     background-color: tomato;
   }
 }
@@ -71,9 +71,15 @@
 }
 
 .genresItem {
-  list-style: inside;
-
   &:not(:last-child) {
     margin-bottom: 10px;
+  }
+
+  &::before {
+    content: '▶';
+
+    margin-right: 10px;
+
+    color: $base-color;
   }
 }

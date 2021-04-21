@@ -50,12 +50,12 @@
   background-color: $secondary-color;
 
   &--top {
-    composes: vote;
+    @extend .vote;
     background-color: $base-color;
   }
 
   &--low {
-    composes: vote;
+    @extend .vote;
     background-color: tomato;
   }
 }
